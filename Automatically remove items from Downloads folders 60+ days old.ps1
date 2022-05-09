@@ -1,9 +1,9 @@
 $Folder = "G:\Downloads" #put the directoy folder where you want to delete
 
-#Delete files older than 6 months
+#Delete files older than 60 days
 Get-ChildItem $Folder -Recurse -Force -ea 0 |
  
-Where-Object {!$_.PsIsContainer -and $_.LastWriteTime -lt (Get-Date).AddDays(-60)} <#Test#> |
+Where-Object {!$_.PsIsContainer -and $_.LastWriteTime -lt (Get-Date).AddDays(-60)} |
 ForEach-Object {
    $_ | Remove-Item -Force
    $_.FullName | Out-File C:\log\deletedlog.txt -Append
