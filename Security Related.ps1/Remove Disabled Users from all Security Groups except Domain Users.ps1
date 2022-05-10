@@ -1,5 +1,25 @@
 #----------------------Generate a csv file for accounts that need to be disabled---------------------------#
 
+Get-ADGroupMember 'GroupName' <#put the specfic Group here, but take out the ''#> | ForEach-Object {
+    if ((Get-ADUser $_).Enabled -eq $false) {
+      $_
+    }
+  } | 
+Export-Csv -path #put the exact location where you want the csv to be located here
+
+#BONUS---------------------------If you dont know a specfic group name--------------------------------BONUS#
+
+get-adgroup -filter * | Sort-Object name | Select-Object Name
+
+#If looking for a specfic name but you only know a partial. For example you want IT Admin$, but only know the IT Admin piece (uses a wildcard)
+
+Get-ADGroup -Filter {Name -like 'ABC_*'}  -Properties * | Select-Object -property SamAccountName,Name,Description,DistinguishedName,CanonicalName,GroupCategory,GroupScope,whenCreated
+#or
+Get-ADGroup -Filter {Name -like 'ABC_*'} -SearchBase "DC=YourDC" | Get-ADGroupMember -Partition "DC=YourDC"
+#or
+Get-ADGroup 'Group Name' -Properties Member | Select-Object -ExpandProperty Member
+#or (.notation)
+(Get-ADGroup 'Group Name' -Properties Member).Member
 
 
 #---------------------------------------Automated email script---------------------------------------------#

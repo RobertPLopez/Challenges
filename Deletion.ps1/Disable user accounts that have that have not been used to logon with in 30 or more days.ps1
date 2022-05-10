@@ -2,6 +2,8 @@
 
 New-Item D:\temp\test\test.txt #put the location for the the txt file here
 
+#Step 2: Put the disabled user accounts in the in the .txt file created above
+
 Search-ADAccount -AccountDisabled -UsersOnly | Select-Object Name,LastLogonDate,Enabled | Set-Content D:\temp\test\test.txt #Make this the same location as above
 
 #Step 3: Disable multiple accounts from the txt file
