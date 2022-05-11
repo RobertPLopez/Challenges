@@ -13,7 +13,7 @@
 #Step 4: Compare the contents of each .txt that was created 
 $a=Get-Content C:\Temp\Admins.txt
 $b=Get-Content C:\Temp\Admins2.txt
-$differ=Compare-Object -ReferenceObject $a -DifferenceObject $b | Select-Object -ExpandProperty InputObject
+$diff=Compare-Object -ReferenceObject $a -DifferenceObject $b | Select-Object -ExpandProperty InputObject
 
 #---------------------------------Do Step 4a---------------------------------#
 
