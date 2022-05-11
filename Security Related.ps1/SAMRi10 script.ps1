@@ -52,7 +52,7 @@ function RevertChanges
         Remove-ItemProperty -Path $key -Name $backup
         Write-Host "Default was set successfully"
     }
-    elseif ($backupValue -ne $null)
+    elseif ($null -ne $backupValue)
     {
         Write-Verbose "Backup value: $backupValue"
         Set-ItemProperty -Path $key -Name $name -Value $backupValue
@@ -144,7 +144,7 @@ catch [System.Management.Automation.MethodInvocationException]
     #Group shouldn't exists on first run.
 }
 
-if ($SAMRUsersGroup -eq $null)
+if ($null -eq $SAMRUsersGroup)
 {
     $SAMRUsersGroup = $adsi.Create('Group', $groupName)
     $SAMRUsersGroup.SetInfo()
