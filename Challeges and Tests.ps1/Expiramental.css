@@ -1,0 +1,14 @@
+body
+  {
+      background-color: Gainsboro;
+  }
+
+table, th, td{
+  border: 1px ridge;
+}
+
+h1{
+    background-color:Tomato;
+    color:white;
+    text-align: center;
+}
