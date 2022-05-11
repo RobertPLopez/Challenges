@@ -5,7 +5,9 @@ Import-Module activedirectory
 $Users = Import-csv c:\it\bulk_import.csv
 
 #Loop through each row containing user details in the CSV file 
-foreach ($User in $Users) {
+foreach ($User in $Users) 
+
+{
     # Read user data from each field in each row
     # the username is used more often, so to prevent typing, save that in a variable
    $Username       = $User.SamAccountName
@@ -49,6 +51,5 @@ foreach ($User in $Users) {
        #  Write-Host "The user account $User is created." -ForegroundColor Cyan
    
 
-    } #end else
-   
+    } #end else   
 }
