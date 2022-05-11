@@ -1,4 +1,4 @@
-#This script is for security administrators to help monitor when new users are added to certain groups. It is a multi-step process
+#This script is for security administrators to help monitor when new users are added to certain groups. It is a multi-step process (jump to Step 4a)
 
 #Step 1: Retrive Domain Admin Group members (creates a baseline)
 (Get-ADGroupMember -Identity "Domain Admins").Name
