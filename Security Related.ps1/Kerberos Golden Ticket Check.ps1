@@ -1,0 +1,6 @@
+#----------------------------------------------------Notes-------------------------------------------------------------#
+#Kerberos is a protocol and mechanism that allows nodes communicating over nonsecure networks to prove their identity to each other in a secure way. It is possible for a hacker who has gained entry into a computer to create what is called a Kerberos ticket granting access. No, you cannot see your local baseball or basketball team play with these types of tickets! That is not going to work!
+
+#Such tickets are a way for hackers to be able to maintain system accesses for a long period of time and keep ferreting away small amounts of data continuously.
+
+#This is what is called a golden ticket attack, one in which the hacker is able to create a ticket that is valid for 10 years (that is more than one season; that is a lot of games without paying!) or even longer by manipulating domain controllers and Active Directory. These tickets can be generated once the hacker gets his hands on an ID with domain administrator privileges. This script is a module that can help in examining a computer’s Kerberos ticket caches for such ticket granting tickets.

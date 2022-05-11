@@ -1,0 +1,2 @@
+#----------------------------------------------------Notes-------------------------------------------------------------#
+#This module makes managing file and folder permissions in Powershell very easy. NTFSSecurity gives you cmdlets for a variety of tasks including day to day ones like pulling up permission reports, adding permissions to an item and removing ACEs (Access Control Entries). You can even use a cmdlet to get the specific permissions in place for a particular user.

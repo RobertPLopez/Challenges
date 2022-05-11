@@ -1,0 +1,4 @@
+#----------------------------------------------------Notes-------------------------------------------------------------#
+#Microsoft has plans to stop recognizing certificates with SHA-1 signatures. The currently available plans are applicable to server authentication certificates and those used to sign executables in a Windows environment (code signing and time stamps).
+
+#Due to the complexity associated with handling certificates and PKI, it can be difficult to determine whether SHA-1 deprecation actually applies to a certain certificate or application. This module does precisely that. It can check for TLS certificates and applications (EXE’s).

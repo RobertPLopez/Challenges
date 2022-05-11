@@ -70,3 +70,7 @@ $diff=(Get-ADGroupMember -Identity "Domain Admins").Name
 $result=(Compare-Object -ReferenceObject $base -DifferenceObject $diff | Where-Object {$_.SideIndicator -eq "=>"} | Select-Object -ExpandProperty InputObject) -join ", "
 If ($result)
 {msg * "The following user was added to the Domain Admins Group: $result"}
+
+#----------------------------------------------------Notes-------------------------------------------------------------#
+#Local admin groups are one of the biggest points of vulnerability for a system where hackers can create local admin accounts on specific systems without being noticed. This script routinely questions multiple machines for changes in local admin groups and sends email reports whenever new members are added.
+
