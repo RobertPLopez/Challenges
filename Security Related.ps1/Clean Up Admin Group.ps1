@@ -3,7 +3,7 @@
 #Step 1: Check who the members of the local admin group are: 
 Get-LocalGroupMember -Group 'Administrators'
 
-#Step 2a: Remove all users from teh local administrator group:
+#Step 2a: Remove all users from the local administrator group:
 Get-LocalGroupMember -Group 'Administrators' | Where-Object {$_.objectclass -like 'user'} | Remove-LocalGroupMember Administrators
 
 #Step 2b: Removal of specfic groups such as domain users: 
