@@ -1,4 +1,4 @@
-# Challenges
+# PowerShell-Repository
 
 This is a repository for common PowerShell scripts for system admins. It was developed as a toolbox that can be customized by the user. The scripts created here are a combination of orginal scripts, borowed from other authors, and explinations of how different modules work. 
 
