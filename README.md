@@ -12,7 +12,7 @@ There are seven major categories to consider in this repository:
 
   This folder can be found at: https://github.com/RobertPLopez/PowerShell-Repository/tree/master/Creation.ps1
   
-  3) Deletion (Think user of OU deletion)
+  3) Deletion (Think user or OU deletion)
 
   This folder can be found at: https://github.com/RobertPLopez/PowerShell-Repository/tree/master/Deletion.ps1
   
@@ -31,6 +31,8 @@ There are seven major categories to consider in this repository:
   7) Stop and Start (This folder is for scripts that stop and/or start processes within a system)
 
   This folder can be found at: https://github.com/RobertPLopez/PowerShell-Repository/tree/master/Stop%20and%20Start%20(Automation).ps1
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 In the future I would like to add the following folders: 
   
