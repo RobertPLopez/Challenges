@@ -1,1 +1,5 @@
+name: Test Markdown
+Description: PowerShell Repository (Working)
+URL: https://robertplopez.github.io/PowerShell-Repository/
+markdown: kramdown
 theme: jekyll-theme-cayman
