@@ -48,18 +48,23 @@ $result=(Compare-Object -ReferenceObject $ref -DifferenceObject $diff | Where-Ob
 If ($result)
 {Send-MailMessage -From $From -to $To -Cc $Cc -SmtpServer $SMTPServer -Port $SMTPPort -UseSsl -Credential (Get-Credential) -Subject $Subject -Body $Body -BodyAsHtml -Priority High}
 
-#The mail server need to accepts emails from your computer. 
+#There is a security issue with putting your get-credential in the script above ^^^
+
+#The mail server need to accepts emails from your computer, or whatever system you are using. 
+
 
 #---------------------------------------------Extras---------------------------------------------#
 #A basic security practice is to put your scirpt into a task scheduler the following script will do just that 
 $Action=New-ScheduledTaskAction -Execute "powershell" -Argument "C:\Alerts\domain_admins.ps1" #This should be where your script resides and will be based off of your local environment
 $Trigger=New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Seconds 86400) -RepetitionDuration ([timespan]::MaxValue) #You can adjust to verify that you will repeat this task based off of your security requirements 
 $Set=New-ScheduledTaskSettingsSet
-$Principal=New-ScheduledTaskPrincipal -UserId "place holderr" -LogonType S4U #YOU NEED TO MODIFY THE USER ID TO MAKE SURE IT HAS THE CORRECT ID FOR YOUR ENVIRONMENT
+$Principal=New-ScheduledTaskPrincipal -UserId "place holder" -LogonType S4U #YOU NEED TO MODIFY THE USER ID TO MAKE SURE IT HAS THE CORRECT ID FOR YOUR ENVIRONMENT
 $Task=New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Set -Principal $Principal
 Register-ScheduledTask -TaskName "Domain Admins Check" -InputObject $Task -Force
 
-#If the administrator group membership changes very rarely, create a baseline. 
+#If the administrator group membership changes very rarely, create a baseline.
+
+#Run the clean admin script 
 
 #Step 1: First save your baseline to a file (.txt or .csv).
 (Get-ADGroupMember -Identity "Domain Admins").Name | Out-File C:\Temp\Admins.txt #This will change based on your requirments 
