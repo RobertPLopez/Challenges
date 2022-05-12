@@ -1,7 +1,7 @@
 #This script is for security administrators to help monitor when new users are added to certain groups. It is a multi-step process (jump to Step 4a)
 
 #Step 1: Retrive Domain Admin Group members (creates a baseline)
-(Get-ADGroupMember -Identity "Domain Admins").Name
+(Get-ADGroupMember -Identity "Domain Admins").Name #needs to be the admin naming convention that you use 
 
 #Step 2: Make the baseline a .txt file 
 (Get-ADGroupMember -Identity "Domain Admins").Name | Out-File C:\Temp\Admins.txt #this location should be personalized based on your local environment and needs. Best practice to maintain it in a secure part of your network. 
@@ -23,13 +23,13 @@ $diff=(Get-ADGroupMember -Identity "Domain Admins").Name
 
 #Step 5: Create a Script to compare membership on a regular basis once per day
 $ref=(Get-ADGroupMember -Identity "Domain Admins").Name
-Start-Sleep -Seconds 86398
+Start-Sleep -Seconds 5 #<-this line is where you set the ammounf of time per day 
 $diff=(Get-ADGroupMember -Identity "Domain Admins").Name
 $result=(Compare-Object -ReferenceObject $ref -DifferenceObject $diff | Where-Object {$_.SideIndicator -eq "=>"} | Select-Object -ExpandProperty InputObject) -join ", "
 If ($result)
 {msg * "The following user was added to the Domain Admins Group: $result"}
 
-#This section of the script sends an alert email 
+#This section of the script sends an alert email after running the script
 $ref=(Get-ADGroupMember -Identity "Domain Admins").Name
 Start-Sleep -Seconds 86398
 $diff=(Get-ADGroupMember -Identity "Domain Admins").Name
@@ -40,7 +40,7 @@ $Cc = <##>
 $Subject = "Domain Admin Membership Changes | $result was added to the Group" <#Put subject here#>
 $Body = "<h2>This alert was generated at $date</h2><br><br>"
 $Body += “” <#Extra space if need be feel free to delete this#>
-$SMTPServer = "smtp.mailtrap.io" <#Dont forget that this needs to to specficed to your unique organization. Specfically for the smtp mail server. This script uses a placeholder#>
+$SMTPServer = "place holder" <#Dont forget that this needs to to specficed to your unique organization. Specfically for the smtp mail server. This script uses a placeholder#>
 $SMTPPort = "587" <# Need the specfic port number. A breakdown is listed below#>
 
 $result=(Compare-Object -ReferenceObject $ref -DifferenceObject $diff | Where-Object {$_.SideIndicator -eq "=>"} | Select-Object -ExpandProperty InputObject) -join ", "
@@ -55,7 +55,7 @@ If ($result)
 $Action=New-ScheduledTaskAction -Execute "powershell" -Argument "C:\Alerts\domain_admins.ps1" #This should be where your script resides and will be based off of your local environment
 $Trigger=New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Seconds 86400) -RepetitionDuration ([timespan]::MaxValue) #You can adjust to verify that you will repeat this task based off of your security requirements 
 $Set=New-ScheduledTaskSettingsSet
-$Principal=New-ScheduledTaskPrincipal -UserId "sid-500\administrator" -LogonType S4U #YOU NEED TO MODIFY THE USER ID TO MAKE SURE IT HAS THE CORRECT ID FOR YOUR ENVIRONMENT
+$Principal=New-ScheduledTaskPrincipal -UserId "place holderr" -LogonType S4U #YOU NEED TO MODIFY THE USER ID TO MAKE SURE IT HAS THE CORRECT ID FOR YOUR ENVIRONMENT
 $Task=New-ScheduledTask -Action $Action -Trigger $Trigger -Settings $Set -Principal $Principal
 Register-ScheduledTask -TaskName "Domain Admins Check" -InputObject $Task -Force
 
