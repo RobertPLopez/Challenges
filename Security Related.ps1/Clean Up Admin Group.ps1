@@ -15,7 +15,7 @@ Invoke-Command -ComputerName $comp -ScriptBlock
     {
     Get-LocalGroupMember -Group 'Administrators' | Where-Object {$_.objectclass -like 'user'} | Remove-LocalGroupMember Administrators
     Get-LocalGroupMember -Group 'Administrators' | Where-Object {$_.name -like 'domain\domain users'} | Remove-LocalGroupMember Administrators}
-
+    
 #-----------------------------------------------------Notes-----------------------------------------------------#
 #Removing local admin rights are a vital way to help maintain the security of your organization. Having multiple users on a local administration group creates one of the biggest and most common loopholes for a hacker to break in to. This script gives you the ability to remove the names of multiple users from the local administrator groups of multiple computers in one shot. It takes in a text file with the names of users to be removed and another text file with the names of the machines on which this is to be done.
 

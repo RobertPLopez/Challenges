@@ -8,7 +8,7 @@ New-SmbShare -Name "Data" -Path <#"J:\Data" put the file pather here#> -EncryptD
 
 #Create an SMB share with Multiple Permissions
 
-PS C:\>New-SmbShare -Name "VMSFiles" -Path <#"C:\ClusterStorage\Volume1\VMFiles" put the file path here#> -ChangeAccess "Users" -FullAccess "Administrators"
+Get-Process C:\>New-SmbShare -Name "VMSFiles" -Path <#"C:\ClusterStorage\Volume1\VMFiles" put the file path here#> -ChangeAccess "Users" -FullAccess "Administrators"
 
 #Create an SMB share properties 
 New-SmbShare -Name <#String#>
