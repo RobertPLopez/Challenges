@@ -34,10 +34,4 @@ There are seven major categories to consider in this repository:
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-In the future I would like to add the following folders: 
-  
-  1) Azure 
-  
-  2) HTML/CSS
-  
-  3) Use Cases
+For Automatic task schedule please look at this article: https://techgenix.com/how-to-schedule-powershell-scripts/
